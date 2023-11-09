@@ -35,6 +35,7 @@ consul:
     defaultZone: ${CONSUL_HOST:containers.quos.io}:${CONSUL_PORT:4500}
     registration:
       enabled: true
+      prefer-ip-address: true
 
 kafka.bootstrap.servers: ${ZKLESS_KAFKA_BOOTSTRAP_SERVICE_HOST:zkless-kafka-bootstrap}:${ZKLESS_KAFKA_BOOTSTRAP_SERVICE_PORT:9092}
 netty:
