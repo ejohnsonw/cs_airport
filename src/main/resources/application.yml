@@ -1,0 +1,68 @@
+micronaut:
+  application:
+    name: cs_airport
+  http:
+    client:
+      readTimeout: 60s
+      max-content-length: 115000000
+  server:
+    port: 9030
+#    cors:
+#      enabled: true
+
+#datasources:
+#  default:
+#    url: jdbc:mysql://localhost:3306/db
+#    driverClassName: com.mysql.cj.jdbc.Driver
+#    username: root
+#    password: ''
+consul:
+  client:
+    defaultZone: ${CONSUL_HOST:consul}:${CONSUL_PORT:4500}
+    registration:
+      enabled: true
+kafka:
+  bootstrap:
+    servers: kafka:9092
+  groupId: cs_booking
+
+
+#        servers: stream.quos.co:9092
+hibernate:
+  hbm2ddl:
+    auto: update
+
+dataSource:
+  pooled: true
+  jmxExport: true
+  driverClassName: com.mysql.jdbc.Driver
+  dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  username: ${DB_USER}
+  password: ${DB_PASSWORD}
+  logSql: false
+  dbCreate: update
+
+  url: jdbc:mysql://${DB_SERVER}:${DB_PORT:3306}/cs_airport?serverTimezone=EST5EDT&allowPublicKeyRetrieval=true&useSSL=false
+  properties:
+    jmxEnabled: true
+    initialSize: 5
+    maxActive: 50
+    minIdle: 5
+    maxIdle: 25
+    maxWait: 10000
+    maxAge: 600000
+    timeBetweenEvictionRunsMillis: 5000
+    minEvictableIdleTimeMillis: 60000
+    validationQuery: SELECT 1
+    validationQueryTimeout: 3
+    validationInterval: 15000
+    testOnBorrow: true
+    testWhileIdle: true
+    testOnReturn: false
+    jdbcInterceptors: ConnectionState
+    defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
+
+netty:
+  default:
+    allocator:
+      max-order: 3
