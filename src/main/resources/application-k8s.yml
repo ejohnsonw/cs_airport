@@ -1,6 +1,6 @@
-micronaut:
-  server:
-    host: ${CS_AIRPORT_SERVICE_HOST}
+#micronaut:
+#  server:
+#    host: ${CS_AIRPORT_SERVICE_HOST}
 dataSource:
   pooled: true
   jmxExport: true
