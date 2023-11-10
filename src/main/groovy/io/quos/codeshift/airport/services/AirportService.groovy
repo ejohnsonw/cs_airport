@@ -78,6 +78,7 @@ class AirportService {
                     if (!f) {
                         f = new Flight()
                         f.flightNumber = s.flightMarketing
+                        f.flightNumberOperating = s.flightOperating
                         f.departureDate = s.departureDateTime
                         f.arrivalDate = s.arrivalDateTime
                         f.origin = Airport.findByIataCode(s.DepartureAirport.iata_code)
