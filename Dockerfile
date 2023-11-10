@@ -12,4 +12,4 @@ RUN chown -R user:user $APP_HOME
 RUN chgrp -R 0 $APP_HOME && \
 chmod -R g=u $APP_HOME
 USER user
-ENTRYPOINT exec java -jar ${ARTIFACT_NAME}
+ENTRYPOINT exec java -Xms2048M -Xmx2048M -jar ${ARTIFACT_NAME}

@@ -8,10 +8,11 @@ class Flight implements GormEntity<Flight> {
     String flightNumber
     String arrivalDate
     String departureDate
+    String newDepartureDate
     Airport origin
     Airport destination
     FlightStatus status
     static constraints = {
-
+        newDepartureDate nullable:true
     }
 }

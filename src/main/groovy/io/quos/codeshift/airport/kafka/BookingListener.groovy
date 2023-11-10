@@ -23,5 +23,12 @@ class BookingListener {
         service.book(m)
     }
 
+    @Topic("cs_offer")
+    void flights(@KafkaKey String offerId, String offer){
+        ObjectMapper om = new ObjectMapper()
+        Map m = om.readValue(offer,Map.class)
+        service.processOffer(m)
+    }
+
 
 }
