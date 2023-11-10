@@ -8,6 +8,8 @@ ENV APP_HOME=/app
 COPY --from=BUILD_STAGE /home/gradle/build/libs/$ARTIFACT_NAME $APP_HOME/
 WORKDIR $APP_HOME
 RUN groupadd -r -g 1000 user && useradd -r -g user -u 1000 user
-RUN chown -R user:user /app
+RUN chown -R user:user $APP_HOME
+RUN chgrp -R 0 $APP_HOME && \
+chmod -R g=u $APP_HOME
 USER user
 ENTRYPOINT exec java -jar ${ARTIFACT_NAME}
