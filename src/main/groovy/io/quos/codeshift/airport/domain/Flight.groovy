@@ -6,6 +6,7 @@ import org.grails.datastore.gorm.GormEntity
 @Entity
 class Flight implements GormEntity<Flight> {
     String flightNumber
+    String flightNumberOperating
     String arrivalDate
     String departureDate
     String newDepartureDate
@@ -14,5 +15,6 @@ class Flight implements GormEntity<Flight> {
     FlightStatus status
     static constraints = {
         newDepartureDate nullable:true
+        flightNumberOperating nullable:true
     }
 }
