@@ -15,5 +15,6 @@ class Feed implements GormEntity<Feed> {
     Date  ts
     static  constraints = {
         json nullable:true
+        content nullable:true
     }
 }
