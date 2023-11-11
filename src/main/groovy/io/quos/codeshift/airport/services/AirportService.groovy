@@ -33,14 +33,14 @@ class AirportService {
                     Feed feed = Feed.findBySubjectAndBookingAndAirport(ad.title,b,origin)
                     if(!feed){
                         feed = new Feed()
-                        feed.subject = ad.title
-                        feed.flight  = f
-                        feed.booking = b
-                        feed.airport = origin
-                        feed.json = JsonUtil.toStringFromObject(ad)
-                        feed.ts = new Date()
-                        feed.save()
                     }
+                    feed.subject = ad.title
+                    feed.flight  = f
+                    feed.booking = b
+                    feed.airport = origin
+                    feed.json = JsonUtil.toStringFromObject(ad)
+                    feed.ts = new Date()
+                    feed.save()
                 }
 
             }
