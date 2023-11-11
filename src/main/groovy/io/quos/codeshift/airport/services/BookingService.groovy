@@ -16,6 +16,9 @@ class BookingService {
             for (Map t : data.offer.trips) {
                 for (Map s : t.segments) {
                     Flight f = Flight.findByFlightNumberAndDepartureDate(s.flightMarketing,s.departureDateTime)
+                    if(!f){
+                        f = Flight.findByFlightNumberOperatingAndDepartureDate(s.flightOperating,s.departureDateTime)
+                    }
                     Booking b = Booking.findByBookingIdAndFlight(data.bookingId,f)
                     if(!b){
                         b = new Booking()
