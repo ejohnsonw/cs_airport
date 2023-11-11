@@ -26,7 +26,7 @@ class AirportController {
     List<FeedPojo> feed(@Body Map request){
         List<FeedPojo> pojos = new ArrayList<>()
         if(request.bookingId){
-            Feed.findAllByBookingAndAirportFlight(Booking.findByBookingId(request.bookingId), Airport.findByIataCode(request.iataCode), Flight.findByFlightNumber(request.flightNumber)).forEach(f->{
+            Feed.findAllByBookingAndAirportAndFlight(Booking.findByBookingId(request.bookingId), Airport.findByIataCode(request.iataCode), Flight.findByFlightNumber(request.flightNumber)).forEach(f->{
                 pojos.add(new FeedPojo(f))
             })
         }
