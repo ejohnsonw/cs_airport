@@ -9,6 +9,7 @@ import io.micronaut.scheduling.annotation.ExecuteOn
 import io.quos.codeshift.airport.domain.Airport
 import io.quos.codeshift.airport.domain.Booking
 import io.quos.codeshift.airport.domain.Feed
+import io.quos.codeshift.airport.domain.Flight
 import io.quos.codeshift.airport.pojos.FeedPojo
 import io.quos.codeshift.airport.services.QuosClient
 import jakarta.inject.Inject
@@ -25,7 +26,7 @@ class AirportController {
     List<FeedPojo> feed(@Body Map request){
         List<FeedPojo> pojos = new ArrayList<>()
         if(request.bookingId){
-            Feed.findAllByBookingAndAirport(Booking.findByBookingId(request.bookingId), Airport.findByIataCode(request.iataCode)).forEach(f->{
+            Feed.findAllByBookingAndAirportFlight(Booking.findByBookingId(request.bookingId), Airport.findByIataCode(request.iataCode), Flight.findByFlightNumber(request.flightNumber)).forEach(f->{
                 pojos.add(new FeedPojo(f))
             })
         }
