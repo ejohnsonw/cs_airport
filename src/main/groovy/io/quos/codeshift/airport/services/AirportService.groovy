@@ -37,7 +37,7 @@ class AirportService {
                         feed.flight  = f
                         feed.booking = b
                         feed.airport = origin
-                        feed.content = JsonUtil.toStringFromObject(ad)
+                        feed.json = JsonUtil.toStringFromObject(ad)
                         feed.ts = new Date()
                         feed.save()
                     }
