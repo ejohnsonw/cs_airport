@@ -14,7 +14,7 @@ class FeedPojo {
         subject = f.subject
         content = f.content
         if(f.json){
-            advertisement = JsonUtil.toObjectFromString(f.json)
+            advertisement = JsonUtil.toObjectFromString(f.json,Map.class)
         }
         ts = f.ts
 
