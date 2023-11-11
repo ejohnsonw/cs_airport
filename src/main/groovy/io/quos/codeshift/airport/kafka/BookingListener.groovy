@@ -25,14 +25,14 @@ class BookingListener {
         ObjectMapper om = new ObjectMapper()
         Map m = om.readValue(data,Map.class)
         //service.book(m)
-        airportService.processOffer(m)
+        airportService.processOffer(m.offer)
     }
 
     @Topic("cs_offer")
     void flights(@KafkaKey String offerId, String offer){
-        ObjectMapper om = new ObjectMapper()
-        Map m = om.readValue(offer,Map.class)
-        airportService.processOffer(m)
+//        ObjectMapper om = new ObjectMapper()
+//        Map m = om.readValue(offer,Map.class)
+//        airportService.processOffer(m)
     }
 
 
