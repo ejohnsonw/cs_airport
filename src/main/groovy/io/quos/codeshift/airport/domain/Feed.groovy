@@ -10,5 +10,6 @@ class Feed implements GormEntity<Feed> {
     Airport airport
     String subject
     String content
+    String media
     Date  ts
 }

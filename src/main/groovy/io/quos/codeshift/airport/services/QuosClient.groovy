@@ -4,7 +4,7 @@ import io.micronaut.http.annotation.Body
 import io.micronaut.http.annotation.Post
 import io.micronaut.http.client.annotation.Client
 
-@Client("https://backend.quos.io/")
+@Client(id="gateway")
 interface QuosClient {
 
     @Post("/duffel/search")
@@ -12,4 +12,7 @@ interface QuosClient {
 
     @Post("/airport/search")
     List<Map> airports(@Body Map request)
+
+    @Post("/advertising/adsForContext")
+    List<Map> adsForContext(@Body Map request)
 }

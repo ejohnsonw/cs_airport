@@ -7,11 +7,16 @@ import io.quos.codeshift.airport.domain.City
 import io.quos.codeshift.airport.domain.Feed
 import io.quos.codeshift.airport.domain.Flight
 import io.quos.codeshift.airport.domain.FlightStatus
+import io.quos.codeshift.airport.utils.JsonUtil
+import jakarta.inject.Inject
 import jakarta.inject.Singleton
 
 @Singleton
 @Transactional
 class AirportService {
+    @Inject
+    QuosClient quosclient
+
     Map flightUpdated(Map request){
         Flight f = Flight.findByFlightNumber(request.flightNumber)
         Airport origin = Airport.findByIataCode(request.origin)
@@ -21,26 +26,23 @@ class AirportService {
         if(f){
             for(Map booking : request.bookings){
                 Booking b = Booking.findByBookingId(booking.bookingId)
-                switch (request.status){
-                    case "DELAYED":
-                        String title = "Flight ${request.flightNumber} delayed - ${origin.name}"
-                        Feed feed = Feed.findBySubjectAndBookingAndAirport(title,b,origin)
-                        if(!feed){
-                            feed = new Feed()
-                            feed.subject = title
-                            feed.flight  = f
-                            feed.booking = b
-                            feed.airport = origin
-                            feed.content = "Sorry to hear your flight has been delayed, while you wait, here is some information we thought you would like to have <a href=\"${origin.linkDelayed}\">Click here</a>"
-                            feed.ts = new Date()
-                            feed.save()
-                        }
-                        break;
-                    case "CANCELLED":
-                        //Notify Hotels
-                        break;
-                    default: println();
+                Map adrequest = new HashMap()
+                adrequest.criteria = request.status
+                def ads = quosclient.adsForContext(adrequest)
+                for(Map ad : ads){
+                    Feed feed = Feed.findBySubjectAndBookingAndAirport(ad.title,b,origin)
+                    if(!feed){
+                        feed = new Feed()
+                        feed.subject = ad.title
+                        feed.flight  = f
+                        feed.booking = b
+                        feed.airport = origin
+                        feed.content = JsonUtil.toStringFromObject(ad)
+                        feed.ts = new Date()
+                        feed.save()
+                    }
                 }
+
             }
         }
     }
