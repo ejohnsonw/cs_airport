@@ -11,7 +11,6 @@ class Feed implements GormEntity<Feed> {
     String subject
     String content
     String json
-    String media
     Date  ts
     static  constraints = {
         json nullable:true
