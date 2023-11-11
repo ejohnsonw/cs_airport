@@ -17,4 +17,8 @@ class Feed implements GormEntity<Feed> {
         json nullable:true
         content nullable:true
     }
+
+    static  mapping = {
+        json sqlType:"TEXT"
+    }
 }
