@@ -7,9 +7,12 @@ import io.quos.codeshift.airport.domain.City
 import io.quos.codeshift.airport.domain.Flight
 import io.quos.codeshift.airport.domain.FlightStatus
 import jakarta.inject.Singleton
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 @Singleton
 class BookingService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(BookingService.class);
     @Transactional
     Map book(Map data) {
         try {
