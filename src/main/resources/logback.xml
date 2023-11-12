@@ -25,7 +25,7 @@
     </appender>
 
     <logger name="org.hibernate.orm.deprecation" level="error"></logger>
-    <logger name="io.quos.codeshift.airline.services" level="debug">
+    <logger name="io.quos.codeshift.airport.services" level="debug">
         <appender-ref ref="AIRLINE"/>
     </logger>
     <logger name="io.micronaut.discovery.client" level="debug"></logger>
