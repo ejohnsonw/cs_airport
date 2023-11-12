@@ -5,6 +5,10 @@ micronaut:
     client:
       readTimeout: 60s
       max-content-length: 115000000
+    services:
+      gateway:
+        urls:
+          - http://localhost:8080/
   server:
     port: 9030
 #    cors:

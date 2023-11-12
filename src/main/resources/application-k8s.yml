@@ -1,6 +1,9 @@
-#micronaut:
-#  server:
-#    host: ${CS_AIRPORT_SERVICE_HOST}
+micronaut:
+  http:
+    services:
+      gateway:
+        urls:
+          - https://backend.quos.io/
 dataSource:
   pooled: true
   jmxExport: true
